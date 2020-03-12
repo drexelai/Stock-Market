@@ -1,6 +1,6 @@
 __author__ = 'Yigit Alparslan'
 # I need the datetime module for telling the current date when I compare todays stock values to 5 days ago and such.
-import datetime
+from datetime import datetime
 # Yahoo Finance V. 1.4
 from yahoo_finance import Share
 # Arrow -- replaced the old date module
@@ -11,10 +11,10 @@ from datetime import datetime
 
 # Checks to see if it is currently the weekend, and displays a message if so (since the stock market only operates on weekdays)
 def weekend():
-    if datetime.datetime.today().weekday() == 6:
+    if datetime.today().weekday() == 6:
         print("Hey, according to your computer it is Sunday, so the stock market is closed today.")
         print("The data you see will be from the last time the stock market was opened.")
-    elif datetime.datetime.today().weekday() == 5:
+    elif datetime.today().weekday() == 5:
         print("Hey, according to your computer it is Saturday, so the stock market is closed today.")
         print("The data you see will be from the last time the stock market was opened.")
 
@@ -212,13 +212,13 @@ def download_daily_ohlc(symbol, start, end):
     )
     csvresp.raise_for_status()
     return csvresp.content
-import urllib2
-from BeautifulSoup import BeautifulSoup as bs
+import urllib
+from bs4 import BeautifulSoup as bs
 
 def get_historical_data(name, number_of_days):
     data = []
     url = "https://finance.yahoo.com/quote/" + name.lower() + "/history/"
-    rows = bs(urllib2.urlopen(url).read()).findAll('table')[0].tbody.findAll('tr')
+    rows = bs(urllib.request.urlopen(url).read()).findAll('table')[0].tbody.findAll('tr')
 
     for each_row in rows:
         divs = each_row.findAll('td')
@@ -239,5 +239,5 @@ weekend()
 # greeting()
 
 # greeting -> companyname -> recent_data -> longterm -> decision -> end 
-ibm = pdr.get_data_yahoo(symbols='IBM', start=datetime(2000, 1, 1), end=datetime(2012, 1, 1))
+ibm = pdr.get_data_yahoo(symbols='IBM', start=datetime(2020, 1, 1), end=datetime(2020, 1, 10))
 print(ibm['Adj Close'])
