@@ -41,3 +41,8 @@ Also, by using this program you agree to take full responsibility if you lose an
 `$ pip install -r requirements.txt`
 - Second, run the program via Python
 `$ python3 Stocks.py`
+
+## TODO:
+- Convert Python 2.7 tp Python 3.6
+- Fix Yahoo Finance API
+- Add linear regression for decision making.
